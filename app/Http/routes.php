@@ -15,6 +15,7 @@ Route::pattern('id', '[0-9]+');
 
 Route::group(['prefix' => 'admin'], function () {
 
+
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', ['as'=>'categories', 'uses'=>'AdminCategoriesController@index']);
         Route::get('create', ['as'=>'categories.create', 'uses' => 'AdminCategoriesController@create']);

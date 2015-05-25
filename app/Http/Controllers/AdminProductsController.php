@@ -55,6 +55,7 @@ class AdminProductsController extends Controller {
 
     public function update(Requests\ProductRequest $request, $id)
     {
+
         $input = $request->all();
 
         $this->products->find($id)->update($input);

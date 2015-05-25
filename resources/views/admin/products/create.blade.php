@@ -30,6 +30,18 @@
         </div>
 
         <div class="form-group">
+            {!! Form::label('featured', 'Featured:') !!}
+            {!! Form::radio('featured', 1, true, ['class' => 'field']) !!} Yes
+            {!! Form::radio('featured', 0, false, ['class' => 'field']) !!} No
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('recommend', 'Recommend:') !!}
+            {!! Form::radio('recommend', 1, true, ['class' => 'field']) !!} Yes
+            {!! Form::radio('recommend', 0, false, ['class' => 'field']) !!} No
+        </div>
+
+        <div class="form-group">
             {!! Form::submit('Add Product', ['class' => 'btn btn-primary']) !!}
         </div>
 
