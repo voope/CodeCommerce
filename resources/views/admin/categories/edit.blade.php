@@ -5,7 +5,7 @@
         <h1>Editing Category {{ $category->name }}</h1>
 
         @if($errors->any())
-            <ul class="alert">
+            <ul class="alert alert-danger">
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
