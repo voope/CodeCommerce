@@ -30,9 +30,22 @@ class AdminProductsController extends Controller {
     public function store(Requests\ProductRequest $request)
     {
 
-        $input = $request->all();
+//        $checkboxes = array('recommended', 'featured', etc);
+//        $data = $request->all();
+//        foreach ($checkboxes as $checkbox) {
+//            if(!isset($data[$checkbox]) {
+//                $data[$checkbox] = 0;
+//            }
+//        }
+        $data = $request->all();
+        if(!isset($data['featured'])) {
+            $data['featured'] = 0;
+        }
+        if(!isset($data['recommended'])) {
+            $data['recommended'] = 0;
+        }
 
-        $product = $this->products->fill($input);
+        $product = $this->products->fill($data);
 
         $product->save();
 
@@ -56,9 +69,22 @@ class AdminProductsController extends Controller {
     public function update(Requests\ProductRequest $request, $id)
     {
 
-        $input = $request->all();
+//        $checkboxes = array('recommended', 'featured', etc);
+//        $data = $request->all();
+//        foreach ($checkboxes as $checkbox) {
+//            if(!isset($data[$checkbox]) {
+//                $data[$checkbox] = 0;
+//            }
+//        }
+        $data = $request->all();
+        if(!isset($data['featured'])) {
+            $data['featured'] = 0;
+        }
+        if(!isset($data['recommended'])) {
+            $data['recommended'] = 0;
+        }
 
-        $this->products->find($id)->update($input);
+        $this->products->find($id)->update($data);
 
         return redirect(route('products'));
     }

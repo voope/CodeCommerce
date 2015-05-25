@@ -30,15 +30,11 @@
         </div>
 
         <div class="form-group">
+            {!! Form::checkbox('featured', 1, ($product->featured)?true:false, ['class' => 'field']) !!}
             {!! Form::label('featured', 'Featured:') !!}
-            {!! Form::radio('featured', 1, ($product->featured)?true:false, ['class' => 'field']) !!} Yes
-            {!! Form::radio('featured', 0, (!$product->featured)?true:false, ['class' => 'field']) !!} No
-        </div>
-
-        <div class="form-group">
-            {!! Form::label('recommend', 'Recommend:') !!}
-            {!! Form::radio('recommend', 1, ($product->recommend)?true:false, ['class' => 'field']) !!} Yes
-            {!! Form::radio('recommend', 0, (!$product->recommend)?true:false, ['class' => 'field']) !!} No
+            &nbsp;&nbsp;
+            {!! Form::checkbox('recommended', 1, ($product->recommended)?true:false, ['class' => 'field']) !!}
+            {!! Form::label('recommended', 'Recommended:') !!}
         </div>
 
         <div class="form-group">
