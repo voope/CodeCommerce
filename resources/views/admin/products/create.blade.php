@@ -41,7 +41,6 @@
             {!! Form::submit('Add Product', ['class' => 'btn btn-primary']) !!}
         </div>
 
-
         {!! Form::close() !!}
 
         <p><a href="{{ route('products')  }}" class="btn btn-danger">Back</a></p>
