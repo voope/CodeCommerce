@@ -96,7 +96,17 @@ class AdminProductsController extends Controller {
 
     public function destroy($id)
     {
-        $this->products->find($id)->delete();
+        $product = $this->products->find($id);
+
+        foreach($product->images as $item) {
+            if (file_exists(public_path() . '/uploads/' . $item->id . '.' . $item->extension)) {
+                Storage::disk('public_local')->delete($item->id . '.' . $item->extension);
+            }
+
+            $item->delete();
+        }
+
+        $product->delete();
 
         return redirect()->route('products');
     }
