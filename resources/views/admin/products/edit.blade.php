@@ -12,7 +12,8 @@
             </ul>
         @endif
 
-        {!! Form::open(['route'=> ['products.update', $product->id], 'method' => 'PUT']) !!}
+        {!! Form::open(['route' => ['products.update', $product], 'method' => 'put', 'class' => 'form form-horizontal']) !!}
+
 
         <div class="form-group">
             {!! Form::label('category', 'Category:') !!}
@@ -31,7 +32,7 @@
 
         <div class="form-group">
             {!! Form::label('price', 'Price:') !!}
-            {!! Form::text('price', $product->price, ['class' => 'form-control']) !!}
+            {!! Form::text('price', $product->price, ['class' => 'form-control', 'step' => 0.01, 'min' => 0.01]) !!}
         </div>
 
         <div class="form-group">
@@ -43,10 +44,13 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Edit Product', ['class' => 'btn btn-primary']) !!}
+            {!! Form::label('tags', 'Tags: ( Use "," to separate )') !!}
+            {!! Form::textarea('tags', $product->tag_list , ['class' => 'form-control']) !!}
         </div>
 
-
+        <div class="form-group">
+            {!! Form::submit('Edit Product', ['class' => 'btn btn-primary']) !!}
+        </div>
 
         {!! Form::close() !!}
 

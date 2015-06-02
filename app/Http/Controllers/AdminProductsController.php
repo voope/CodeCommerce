@@ -4,22 +4,26 @@ use CodeCommerce\Category;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Product;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use CodeCommerce\Http\Requests\ProductRequest;
+use CodeCommerce\Http\Requests\ProductImageRequest;
+
 
 class AdminProductsController extends Controller {
 
-    private $products;
+    private $product;
 
     public function __construct(Product $product)
     {
-        $this->products = $product;
+        $this->product = $product;
     }
 
     public function index()
     {
-        $products = $this->products->paginate(10);
+        $products = $this->product->paginate(10);
 
         //dd($products);
 
@@ -34,7 +38,7 @@ class AdminProductsController extends Controller {
         return view('admin.products.create', compact('categories'));
     }
 
-    public function store(Requests\ProductRequest $request)
+    public function store(ProductRequest $request)
     {
 
 //        $checkboxes = array('recommended', 'featured', etc);
@@ -45,6 +49,7 @@ class AdminProductsController extends Controller {
 //            }
 //        }
         $data = $request->all();
+
         if(!isset($data['featured'])) {
             $data['featured'] = 0;
         }
@@ -52,9 +57,13 @@ class AdminProductsController extends Controller {
             $data['recommended'] = 0;
         }
 
-        $product = $this->products->fill($data);
+        $tagsIDs = $this->getTagsIDs($data['tags']);
+        unset($data['tags']);
+        $this->product->fill($data);
+        $this->product->save();
+        $this->product->tags()->sync($tagsIDs);
 
-        $product->save();
+        //\Session::flash('product_added', 'Product has been successfully added in the database.');
 
         return redirect()->route('products');
     }
@@ -63,14 +72,15 @@ class AdminProductsController extends Controller {
     {
         $categories = $category->lists('name', 'id');
 
-        $product = $this->products->find($id);
+        $product = $this->product->find($id);
+
 
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
 
 
-    public function update(Requests\ProductRequest $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
 
 //        $checkboxes = array('recommended', 'featured', etc);
@@ -80,6 +90,9 @@ class AdminProductsController extends Controller {
 //                $data[$checkbox] = 0;
 //            }
 //        }
+
+        dd($product);
+
         $data = $request->all();
         if(!isset($data['featured'])) {
             $data['featured'] = 0;
@@ -88,15 +101,19 @@ class AdminProductsController extends Controller {
             $data['recommended'] = 0;
         }
 
-        $this->products->find($id)->update($data);
+        $tagsIDs = $this->getTagsIDs($data['tags']);
+        unset($data['tags']);
+        $product->tags()->sync($tagsIDs);
+        $product->update($data);
 
-        return redirect(route('products'));
+        return redirect()->route('products');
+
     }
 
 
     public function destroy($id)
     {
-        $product = $this->products->find($id);
+        $product = $this->product->find($id);
 
         foreach($product->images as $item) {
             if (file_exists(public_path() . '/uploads/' . $item->id . '.' . $item->extension)) {
@@ -113,14 +130,14 @@ class AdminProductsController extends Controller {
 
     public function images($id)
     {
-        $product = $this->products->find($id);
+        $product = $this->product->find($id);
 
         return view('admin.products.images', compact('product'));
     }
 
     public function createImage($id)
     {
-        $product = $this->products->find($id);
+        $product = $this->product->find($id);
 
         return view('admin.products.create_image', compact('product'));
     }
@@ -152,6 +169,25 @@ class AdminProductsController extends Controller {
         $image->delete();
 
         return redirect()->route('products.images', ['id'=>$product->id]);
+    }
+
+    private function getTagsIDs($tagList)
+    {
+        $tags = explode(',',$tagList);
+        $tagsIDs = array();
+
+        foreach($tags as $tagName) {
+            $tagName = trim($tagName);
+            $tag = Tag::where('name', '=', $tagName)->first();
+            if (!$tag && !empty($tagName)) {
+                $tag = Tag::create(['name' => $tagName]);
+            }
+            if(!in_array($tag->id, $tagsIDs)) {
+                $tagsIDs[] = $tag->id;
+            }
+        }
+
+        return $tagsIDs;
     }
 
 }

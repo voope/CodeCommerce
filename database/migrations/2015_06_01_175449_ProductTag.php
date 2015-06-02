@@ -14,7 +14,8 @@ class ProductTag extends Migration {
 	{
 		Schema::create('product_tag', function(Blueprint $table)
 		{
-			$table->integer('product_id');
+            $table->increments('id');
+            $table->integer('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->integer('tag_id');
             $table->foreign('tag_id')->references('id')->on('tag_id');
