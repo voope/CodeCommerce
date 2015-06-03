@@ -91,11 +91,6 @@ class AdminProductsController extends Controller {
 //            }
 //        }
 
-<<<<<<< HEAD
-
-=======
-        dd($product);
->>>>>>> 7c86da1f9249885c440efa2ffde356bc6206e3d3
 
         $data = $request->all();
         if(!isset($data['featured'])) {
