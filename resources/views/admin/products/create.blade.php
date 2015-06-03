@@ -31,7 +31,7 @@
 
         <div class="form-group">
             {!! Form::label('price', 'Price:') !!}
-            {!! Form::text('price', null, ['class' => 'form-control']) !!}
+            {!! Form::text('price', null, ['class' => 'form-control', 'step' => 0.01, 'min' => 0.01]) !!}
         </div>
 
         <div class="form-group">
@@ -40,6 +40,11 @@
             &nbsp;&nbsp;
             {!! Form::checkbox('recommended', 1, true, ['class' => 'field']) !!}
             {!! Form::label('recommended', 'Recommended:') !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('tags', 'Tags: ( Use "," to separate )') !!}
+            {!! Form::textarea('tags', null, ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">

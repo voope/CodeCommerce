@@ -22,9 +22,9 @@ class ProductRequest extends Request {
 	public function rules()
 	{
         return [
-            'name'=>'required|min:5',
-            'description'=>'required',
-            'price' => 'required'
+            'name'=>'required|min:3',
+            'description' => 'required',
+            'price' => 'required|min:0.01',
         ];
 	}
 
