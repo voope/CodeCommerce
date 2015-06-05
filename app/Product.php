@@ -28,9 +28,21 @@ class Product extends Model {
         return $this->belongsToMany('CodeCommerce\Tag');
     }
 
-    public function getTagListAttribute(){
+    public function getTagListAttribute()
+    {
         $tags = $this->tags->lists('name');
 
         return implode(',', $tags);
     }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured','=',1);
+    }
+
+    public function scopeRecommended($query)
+    {
+        return $query->where('recommended','=',1);
+    }
+
 }
