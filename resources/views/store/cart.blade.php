@@ -34,17 +34,21 @@
                             <td class="cart_price">
                                 R$ {{ $item['price'] }}
                             </td>
+
                             <td class="cart_quantity">
-                                {!! Form::open(['route' => ['cart.update', 'id'=>$k], 'method' => 'post']) !!}
                                 <div class="form-group">
+                                    {!! Form::open(['route' => ['cart.update', 'id'=>$k], 'method' => 'post']) !!}
                                     {!! Form::text('qtd', $item['qtd'], ['class' => 'form-control']) !!}
+                                    {!! Form::submit('Update Qtd', ['class' => 'btn btn-success']) !!}
+                                    {!! Form::close() !!}
                                 </div>
-                                {!! Form::close() !!}
                             </td>
                             <td class="cart_total">
                                 <p class="cart_total_price">R$ {{ $item['price'] * $item['qtd'] }}</p>
                             </td>
+
                             <td class="cart_delete">
+
                                 <a href="{{ route('cart.destroy', ['id'=>$k]) }}" class="cart_quantity_delete">Delete</a>
                             </td>
 
