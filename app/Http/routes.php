@@ -13,7 +13,7 @@
 
 //Route::pattern('id', '[0-9]+');
 
-Route::group(['prefix' => 'admin', 'where'=>['id'=>'[0-9]+']], function () {
+Route::group(['prefix' => 'admin', 'middleware'=>'auth', 'where'=>['id'=>'[0-9]+']], function () {
 
     Route::group(['prefix' => 'categories'], function () {
         Route::get('', ['as'=>'categories', 'uses'=>'AdminCategoriesController@index']);
@@ -46,9 +46,18 @@ Route::group(['prefix' => 'admin', 'where'=>['id'=>'[0-9]+']], function () {
 
 
 Route::get('/', 'StoreController@index');
+Route::get('/home', 'StoreController@index');
+
 Route::get('/category/{category}', ['as' => 'category', 'uses' => 'StoreController@category']);
 Route::get('/product/{product}', ['as' => 'product', 'uses' => 'StoreController@product']);
 Route::get('/tags/{id}', ['as' => 'tags', 'uses' => 'StoreController@tags']);
+
+Route::get('cart', ['as' => 'cart', 'uses' => 'CartController@index']);
+Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+Route::get('cart/destroy/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
+
+Route::get('checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+
 
 
 Route::controllers([

@@ -7,7 +7,11 @@
 @section('content')
 
         <div class="col-sm-9 padding-right">
-
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li>Product</li>
+                <li class="active">{{ $product->name }}</li>
+            </ol>
             <div class="product-details"><!--product-details-->
                 <div class="col-sm-5">
                     <div class="view-product">
@@ -43,7 +47,7 @@
                         <p>{{ $product->description }}</p>
                                 <span>
                                     <span>R$ {{ number_format($product->price,"2",",",".") }}</span>
-                                        <a href="http://commerce.dev:10088/cart/2/add" class="btn btn-fefault cart">
+                                        <a href="{{ route('cart.add', ['id'=>$product->id]) }}" class="btn btn-fefault cart">
                                             <i class="fa fa-shopping-cart"></i>
                                             Add in Cart
                                         </a>
