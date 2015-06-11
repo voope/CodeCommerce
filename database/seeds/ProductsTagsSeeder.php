@@ -10,6 +10,8 @@ class ProductsTagsSeeder extends Seeder
 {
     public function run()
     {
+        DB::table('product_tag')->truncate();
+
         $tags = Tag::all();
         $products = Product::all();
         foreach($products as $product) {

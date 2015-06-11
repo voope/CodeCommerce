@@ -11,56 +11,61 @@ namespace CodeCommerce;
 
 class Cart {
 
-    private $items;
+    private $itens;
 
     public function __construct()
     {
-        $this->items = [];
+        $this->itens = [];
     }
 
     public function add($id, $name, $price)
     {
-        $this->items += [
+        $this->itens += [
             $id => [
-                'qtd' => isset($this->items[$id]['qtd']) ? $this->items[$id]['qtd']++ : 1,
+                'qtd' => isset($this->itens[$id]['qtd']) ? $this->itens[$id]['qtd']++ : 1,
                 'price' => $price,
                 'name' => $name
             ]
         ];
 
-        return $this->items;
+        return $this->itens;
     }
 
     public function update($id, $name, $price, $qtd)
     {
 
-        $this->items += [
+        $this->itens += [
             $id => [
-                'qtd' => $this->items[$id]['qtd'] = $qtd,
+                'qtd' => $this->itens[$id]['qtd'] = $qtd,
                 'price' => $price,
                 'name' => $name
             ]
         ];
 
-        return $this->items;
+        return $this->itens;
     }
 
     public function remove($id)
     {
-        unset($this->items[$id]);
+        unset($this->itens[$id]);
     }
 
     public function all(){
-        return $this->items;
+        return $this->itens;
     }
 
     public function getTotal(){
         $total = 0;
-        foreach($this->items as $items){
+        foreach($this->itens as $items){
             $total += $items['qtd'] * $items['price'];
         }
 
         return $total;
+    }
+
+    public function clear()
+    {
+        $this->itens = [];
     }
 
 }

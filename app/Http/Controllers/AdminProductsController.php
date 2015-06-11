@@ -74,10 +74,8 @@ class AdminProductsController extends Controller {
 
         $product = $this->product->find($id);
 
-
         return view('admin.products.edit', compact('product', 'categories'));
     }
-
 
 
     public function update(ProductRequest $request, Product $product)

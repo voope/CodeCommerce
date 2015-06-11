@@ -28,12 +28,12 @@ class Product extends Model {
         return $this->belongsToMany('CodeCommerce\Tag');
     }
 
-    public function getTagListAttribute()
+    public function getAllTagsAttribute()
     {
         $tags = $this->tags->lists('name');
-
-        return implode(',', $tags);
+        return implode(', ', $tags);
     }
+
 
     public function scopeFeatured($query)
     {

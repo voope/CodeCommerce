@@ -45,7 +45,7 @@
 
         <div class="form-group">
             {!! Form::label('tags', 'Tags: ( Use "," to separate )') !!}
-            {!! Form::textarea('tags', $product->tag_list , ['class' => 'form-control']) !!}
+            {!! Form::textarea('tags', $product->allTags, ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">

@@ -11,13 +11,9 @@ class TagTableSeeder extends Seeder
     public function run()
     {
         DB::table('tags')->truncate();
-        
-        $faker = Faker::create();
-        FunctionHelper::do_times(function() use($faker) {
-            Tag::create([
-                'name'        => ucfirst($faker->word),
-            ]);
-        }, 50);        
-        
+
+        factory('CodeCommerce\Tag', 40)->create();
+
+
     }
 }
