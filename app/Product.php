@@ -30,7 +30,7 @@ class Product extends Model {
 
     public function getAllTagsAttribute()
     {
-        $tags = $this->tags->lists('name');
+        $tags = $this->tags->lists('name')->toArray();
         return implode(', ', $tags);
     }
 

@@ -49,42 +49,42 @@
 							</div>
 						</div>
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">CEP</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="cep" value="{{ old('cep') }}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Endereço</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="endereco" value="{{ old('endereco') }}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Número</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="numero" value="{{ old('numero') }}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Bairro</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Cidade</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="cidade" value="{{ old('cidade') }}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Estado</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="estado" value="{{ old('estado') }}">
-                            </div>
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-md-4 control-label">CEP</label>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<input type="text" class="form-control" name="cep" value="{{ old('cep') }}">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-md-4 control-label">Endereço</label>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<input type="text" class="form-control" name="endereco" value="{{ old('endereco') }}">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-md-4 control-label">Número</label>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<input type="text" class="form-control" name="numero" value="{{ old('numero') }}">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-md-4 control-label">Bairro</label>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<input type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-md-4 control-label">Cidade</label>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<input type="text" class="form-control" name="cidade" value="{{ old('cidade') }}">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-md-4 control-label">Estado</label>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<input type="text" class="form-control" name="estado" value="{{ old('estado') }}">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">

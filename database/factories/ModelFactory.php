@@ -5,12 +5,6 @@ $factory->define('CodeCommerce\User', function($faker) {
         'name' => $faker->name,
         'email' => $faker->email,
         'password' => Hash::make($faker->word),
-        'cep' => $faker->word,
-        'endereco' => $faker->word,
-        'numero' => $faker->word,
-        'bairro' => $faker->word,
-        'cidade' => $faker->word,
-        'estado' => $faker->word,
         'is_admin' => 0 //$faker->boolean()
     ];
 });

@@ -13,7 +13,7 @@
 
 //Route::pattern('id', '[0-9]+');
 
-Route::group(['prefix' => 'admin', 'middleware'=>'auth', 'where'=>['id'=>'[0-9]+']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'where'=>['id'=>'[0-9]+']], function () {
 
     Route::group(['prefix' => 'categories'], function () {
         Route::get('', ['as'=>'categories', 'uses'=>'AdminCategoriesController@index']);

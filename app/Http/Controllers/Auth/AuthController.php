@@ -22,48 +22,48 @@ class AuthController extends Controller {
 //        return view('auth.register');
 //    }
 
-    public function postRegister(Request $request)
-    {
-        $validator = $this->validator($request->all());
+//    public function postRegister(Request $request)
+//    {
+//        $validator = $this->validator($request->all());
+//
+//        if ($validator->fails()) {
+//            $this->throwValidationException(
+//                $request, $validator
+//            );
+//        }
+//
+//        $this->validateProfile($request);
+//
+//        $dataUser = $request->all();
+//        unset($dataUser['profile']);
+//
+//        $user = $this->create($dataUser);
+//
+//        $user->profile()->create($request->get('profile'));
+//
+//        Auth::login($user);
+//
+//        return redirect('/');
+//    }
 
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $this->validateProfile($request);
-
-        $dataUser = $request->all();
-        unset($dataUser['profile']);
-
-        $user = $this->create($dataUser);
-
-        $user->profile()->create($request->get('profile'));
-
-        Auth::login($user);
-
-        return redirect('/');
-    }
-
-    public function validateProfile(Request $request)
-    {
-        $this->validate($request, [
-            'profile.cep' => 'required',
-            'profile.endereco' => 'required',
-            'profile.numero' => 'required',
-            'profile.bairro' => 'required',
-            'profile.cidade' => 'required',
-            'profile.estado' => 'required',
-        ], [
-            'profile.cep.required' => 'CEP é requerido',
-            'profile.endereco.required' => 'Endereço é requerido',
-            'profile.numero.required' => 'Número é requerido',
-            'profile.bairro.required' => 'Bairro é requerido',
-            'profile.cidade.required' => 'Cidade é requerido',
-            'profile.estado.required' => 'Estado é requerido',
-        ]);
-    }
+//    public function validateProfile(Request $request)
+//    {
+//        $this->validate($request, [
+//            'profile.cep' => 'required',
+//            'profile.endereco' => 'required',
+//            'profile.numero' => 'required',
+//            'profile.bairro' => 'required',
+//            'profile.cidade' => 'required',
+//            'profile.estado' => 'required',
+//        ], [
+//            'profile.cep.required' => 'CEP é requerido',
+//            'profile.endereco.required' => 'Endereço é requerido',
+//            'profile.numero.required' => 'Número é requerido',
+//            'profile.bairro.required' => 'Bairro é requerido',
+//            'profile.cidade.required' => 'Cidade é requerido',
+//            'profile.estado.required' => 'Estado é requerido',
+//        ]);
+//    }
 
     public function validator(array $data)
     {
