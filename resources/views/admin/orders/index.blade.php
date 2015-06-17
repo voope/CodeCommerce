@@ -1,16 +1,17 @@
-@extends('store')
+@extends('admin')
 
 
 @section('content')
 
     <div class="container">
 
-        <h3>Meus Pedidos</h3>
+        <h1>Orders</h1>
 
         <table class="table">
             <tbody>
                 <tr>
                     <th>#ID</th>
+                    <th>User</th>
                     <th>Itens</th>
                     <th>Valor</th>
                     <th>Status</th>
@@ -20,6 +21,7 @@
 
                     <tr>
                         <td>{{ $order->id }}</td>
+                        <td>{{ $order->user->name }}</td>
                         <td>
                             <ul>
                                 @foreach($order->items as $item)
@@ -32,15 +34,16 @@
                         <td>{{ $order->total }}</td>
                         <td>
 
-                            @if($order->status == 0)
-                                Aguardando pagamento...
-                            @elseif($order->status == 1)
-                                Pagamento confirmado
-                            @elseif($order->status == 2)
-                                Enviado
-                            @else
-                                Cancelado
-                            @endif
+                            {!! Form::open(['route' => ['orders.update', $order], 'method' => 'post', 'class' => 'form-inline']) !!}
+                                <div class="form-group">
+                                    {!! Form::select('status', $status, $order->status, ['class' => 'form-control']) !!}
+
+                                </div>
+                            {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
+
+                            {!! Form::close() !!}
+
+
 
                         </td>
                     </tr>

@@ -9,6 +9,18 @@ $factory->define('CodeCommerce\User', function($faker) {
     ];
 });
 
+$factory->define('CodeCommerce\Profile', function($faker) {
+    return [
+        'cep'        => $faker->numberBetween(10000,  100000),
+        'endereco' => $faker->sentence,
+        'numero'       => $faker->numberBetween(1,  1000),
+        'bairro'    => $faker->word,
+        'cidade'   => $faker->word,
+        'estado'   => $faker->word,
+        'user_id' => $faker->unique()->randomDigit
+    ];
+});
+
 $factory->define('CodeCommerce\Category', function($faker) {
     return [
         'name' => ucfirst($faker->word),

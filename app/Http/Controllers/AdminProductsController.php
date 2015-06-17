@@ -19,13 +19,12 @@ class AdminProductsController extends Controller {
     public function __construct(Product $product)
     {
         $this->product = $product;
+
     }
 
     public function index()
     {
         $products = $this->product->paginate(10);
-
-        //dd($products);
 
         return view('admin.products.index', compact('products'));
     }
